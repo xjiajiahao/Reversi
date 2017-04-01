@@ -83,7 +83,8 @@ class Engine_v1 (object):
         self.test_for_keyboard_commands()
 
     def handle_keyup(self, event):
-        del(self.keys_down[event.key])
+        if event.key in self.keys_down:
+            del(self.keys_down[event.key])
 
     def handle_mousedown(self, event):
         pass
@@ -104,15 +105,16 @@ class Engine_v1 (object):
         pass
 
     def test_for_keyboard_commands(self):
-        # Cmd + Q
-        if 113 in self.keys_down and 310 in self.keys_down:
-            if self.keys_down[310] <= self.keys_down[113]:# Cmd has to be pushed first
-                quit()
+        # Q
+        if 113 in self.keys_down:# and 310 in self.keys_down:
+            #if self.keys_down[310] <= self.keys_down[113]:# Cmd has to be pushed first
+            quit()
 
-        # Cmd + N
-        if 106 in self.keys_down and 310 in self.keys_down:
-            if self.keys_down[310] <= self.keys_down[106]:# Cmd has to be pushed first
-                self.new_game()
+        # N
+        if 110 in self.keys_down:# and 310 in self.keys_down:
+            #if self.keys_down[310] <= self.keys_down[106]:# Cmd has to be pushed first
+            print("n is pressed")
+            self.new_game()
 
     def new_game(self):
         self.game.__init__()
